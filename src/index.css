@@ -64,7 +64,7 @@ svg {
   background: #248bda80;
 }
 .container {
-  width: min(1200px, calc(100% - 80px));
+  width: min(1600px, calc(100% - 80px));
   margin-inline: auto;
 }
 .section {
@@ -146,17 +146,41 @@ h3 {
   display: flex;
   align-items: center;
   gap: 20px;
-  border: 1px solid #43505b;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  transition: background 200ms, border-color 200ms;
   border-radius: 9px;
   padding: 12px 17px;
   font-size: 13px;
 }
 .header-cta:hover {
-  background: var(--section);
+  background: #329bea;
+  border-color: #329bea;
 }
 .menu-toggle {
   display: none;
 }
+.hero-background {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(0deg, var(--bg), transparent 28%),
+    linear-gradient(90deg, rgb(26 32 38 / 90%) 0%, rgb(26 32 38 / 72%) 45%, rgb(26 32 38 / 40%) 100%),
+    url("./assets/bg-bangkok.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 700px) {
+  .hero-background {
+    background-image:
+      linear-gradient(180deg, rgb(26 32 38 / 85%) 0%, rgb(26 32 38 / 60%) 55%, var(--bg) 100%),
+      url("./assets/bg-bangkok.jpg");
+    background-position: 60% center;
+  }
+}
+
 .hero {
   min-height: 746px;
   display: grid;
@@ -1069,18 +1093,106 @@ h1 {
 .final-cta {
   text-align: center;
   padding: 58px 30px 60px;
-  background: #223443;
+  background-color: #223443;
+  background-image:
+    radial-gradient(ellipse at center, rgb(34 52 67 / 97%) 8%, rgb(34 52 67 / 85%) 35%, rgb(34 52 67 / 12%) 100%),
+    url("./assets/telegram-pattern.svg");
+  background-size: 100% 100%, 480px 340px;
+  background-position: center;
+  background-repeat: no-repeat, repeat;
   border: 1px solid #365169;
   border-radius: 21px;
   overflow: hidden;
 }
 
 .location-cta {
+  position: relative;
   text-align: center;
   background: #223443;
   border: 1px solid #365169;
   border-radius: 21px;
   overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.location-map-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg);
+}
+
+.location-map-scroll:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: -3px;
+}
+
+.location-map-image {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+.location-scroll-hint {
+  display: none;
+}
+
+.location-legend {
+  position: absolute;
+  left: 32px;
+  bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 18px 22px;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgb(26 32 38 / 92%);
+  color: #e8eef3;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.location-legend li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.location-legend img {
+  width: 20px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .location-map-image {
+    min-width: 1100px;
+  }
+
+  .location-scroll-hint {
+    display: block;
+    padding: 12px 20px;
+    color: var(--hint);
+    background: var(--bg);
+    font-size: 12px;
+  }
+
+  .location-legend {
+    position: static;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    padding: 20px;
+    font-size: 13px;
+    gap: 12px;
+  }
 }
 
 .cta-icon {
@@ -1088,10 +1200,15 @@ h1 {
   width: 70px;
   height: 70px;
   border-radius: 21px;
-  background: #248bda;
+  background: var(--accent);
   display: grid;
   place-items: center;
   transform: rotate(-9deg);
+}
+.cta-icon img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 .final-cta h2 {
   font-size: 48px;

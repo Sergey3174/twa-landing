@@ -1,0 +1,3 @@
+Generated with the built-in image_gen tool. Transparent background enabled.
+
+Use case: stylized-concept. Asset type: one isolated Telegram icon for a dark blue website call-to-action, displayed at 88px. Create a polished subtly three-dimensional Telegram app badge: round blue disc (#248bda to #4db2ff) with the recognizable solid white Telegram paper-plane logo pointing upper right, centered on its face. Near-frontal view, very slight perspective and soft bevel, refined satin finish, clean silhouette, restrained highlights. Square composition, badge fills 85% of canvas, centered. Truly transparent background, no backdrop, no floor, no text, no extra objects, no watermark. Keep the white Telegram silhouette crisp and legible at small UI size.

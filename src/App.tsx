@@ -1,7 +1,10 @@
 ﻿import { useEffect, useRef, useState } from "react";
 import MAP from "./assets/Map_world_dark_soon.svg";
+import locationActive from "./assets/location-active.svg";
+import locationSoon from "./assets/location-soon.svg";
 
 import phoneScreenshot from "./assets/phone-screen.png";
+import telegramIcon from "./assets/telegram-plane.svg";
 import "./effects.css";
 
 function moveHero(event: React.PointerEvent<HTMLDivElement>) {
@@ -48,10 +51,11 @@ type IconName =
 function Icon({ name, size = 22 }: { name: IconName; size?: number }) {
   const paths: Record<IconName, React.ReactNode> = {
     send: (
-      <>
-        <path d="m21 3-7 18-4-7-7-4L21 3Z" />
-        <path d="m10 14 6-6" />
-      </>
+      <path
+        fill="currentColor"
+        stroke="none"
+        d="M22.05 2.27 1.35 10.25c-1.41.57-1.4 1.36-.26 1.71l5.31 1.66 2.03 6.23c.25.69.13.96.86.96.56 0 .81-.25 1.12-.55l2.58-2.51 5.36 3.96c.99.55 1.7.27 1.95-.92l3.52-16.58c.36-1.44-.55-2.1-1.77-1.55ZM7.23 13.24l12.02-7.58c.6-.37 1.16-.17.71.24l-9.93 8.96-.39 4.13-2.41-5.75Z"
+      />
     ),
     pin: (
       <>
@@ -281,7 +285,6 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [category, setCategory] = useState("Все объявления");
   const [saved, setSaved] = useState<string[]>([]);
-  const [cityIndex, setCityIndex] = useState(0);
   const [selected, setSelected] = useState<(typeof listings)[number] | null>(
     null,
   );
@@ -292,7 +295,6 @@ function App() {
     dialogRef.current?.focus();
     return () => opener?.focus();
   }, [selected]);
-  const city = cities[cityIndex];
   const visibleListings =
     category === "Все объявления"
       ? listings.slice(0, 3)
@@ -344,76 +346,78 @@ function App() {
         </div>
       </header>
       <main id="main">
-        <section className="hero container">
-          <div className="hero-copy">
-            <div className="hero-badge">
-              <Icon name="send" size={15} />
-              <span>Ваш район. Ваш Telegram.</span>
-            </div>
-            <h1>
-              Новый город.
-              <br />
-              Свои люди.
-              <br />
-              Всё рядом.
-            </h1>
-            <p className="hero-description">
-              Жильё, байк, вещи и услуги — от людей рядом с вами. Находите
-              нужное и договаривайтесь прямо в Telegram.
-            </p>
-            <div className="hero-actions">
-              <TelegramButton />
-              <a className="text-link" href="#discover">
-                Посмотреть, что внутри <Icon name="arrow" size={18} />
-              </a>
-            </div>
-            <p className="hero-note">
-              <Icon name="check" size={15} />
-              Без отдельного приложения и нового аккаунта
-            </p>
-          </div>
-          <div
-            className="hero-visual"
-            onPointerMove={moveHero}
-            onPointerLeave={resetHero}
-          >
-            <div className="orbit orbit-one" />
-            <div className="orbit orbit-two" />
-            <div className="orbit orbit-three" />
-            <div className="orbit-dot" />
-            <div className="visual-place">
-              <span className="live-dot" />
-              Бали, Чангу
-            </div>
-            <PhonePreview />
-            <div className="floating-listing">
-              <img
-                src="/images/villa.jpg"
-                alt="Вилла с бассейном — пример объявления"
-              />
-              <div>
-                <span>Жильё рядом</span>
-                <strong>Место, где хочется жить</strong>
-                <p>
-                  <Icon name="pin" size={13} />
-                  Берава · 1,2 км
-                </p>
+        <section className="hero-background">
+          <div className="hero container">
+            <div className="hero-copy">
+              <div className="hero-badge">
+                <Icon name="send" size={15} />
+                <span>Ваш район. Ваш Telegram.</span>
               </div>
-              <span className="floating-heart">
-                <Icon name="heart" size={19} />
-              </span>
-            </div>
-            <div className="floating-message">
-              <span className="message-avatar">А</span>
-              <div>
-                <strong>
-                  Алексей <span>сейчас</span>
-                </strong>
-                <p>Привет! Да, байк ещё свободен 👋</p>
+              <h1>
+                Новый город.
+                <br />
+                Свои люди.
+                <br />
+                Всё рядом.
+              </h1>
+              <p className="hero-description">
+                Жильё, байк, вещи и услуги — от людей рядом с вами. Находите
+                нужное и договаривайтесь прямо в Telegram.
+              </p>
+              <div className="hero-actions">
+                <TelegramButton />
+                <a className="text-link" href="#discover">
+                  Посмотреть, что внутри <Icon name="arrow" size={18} />
+                </a>
               </div>
+              <p className="hero-note">
+                <Icon name="check" size={15} />
+                Без отдельного приложения и нового аккаунта
+              </p>
             </div>
-            <div className="big-pin">
-              <Icon name="pin" size={44} />
+            <div
+              className="hero-visual"
+              onPointerMove={moveHero}
+              onPointerLeave={resetHero}
+            >
+              <div className="orbit orbit-one" />
+              <div className="orbit orbit-two" />
+              <div className="orbit orbit-three" />
+              <div className="orbit-dot" />
+              <div className="visual-place">
+                <span className="live-dot" />
+                Бали, Чангу
+              </div>
+              <PhonePreview />
+              <div className="floating-listing">
+                <img
+                  src="/images/villa.jpg"
+                  alt="Вилла с бассейном — пример объявления"
+                />
+                <div>
+                  <span>Жильё рядом</span>
+                  <strong>Место, где хочется жить</strong>
+                  <p>
+                    <Icon name="pin" size={13} />
+                    Берава · 1,2 км
+                  </p>
+                </div>
+                <span className="floating-heart">
+                  <Icon name="heart" size={19} />
+                </span>
+              </div>
+              <div className="floating-message">
+                <span className="message-avatar">А</span>
+                <div>
+                  <strong>
+                    Алексей <span>сейчас</span>
+                  </strong>
+                  <p>Привет! Да, байк ещё свободен 👋</p>
+                </div>
+              </div>
+              <div className="big-pin">
+                <Icon name="pin" size={44} />
+              </div>
             </div>
           </div>
         </section>
@@ -421,12 +425,8 @@ function App() {
           <div className="container flex flex-wrap items-center justify-between gap-5">
             <span>Ближе, чем кажется</span>
             <div className="flex flex-wrap items-center gap-8 md:gap-12">
-              {cities.map((c, i) => (
-                <a
-                  href="#locations"
-                  key={c.name}
-                  onClick={() => setCityIndex(i)}
-                >
+              {cities.map((c) => (
+                <a href="#locations" key={c.name}>
                   <Icon name="pin" size={17} />
                   {c.name}
                 </a>
@@ -437,7 +437,11 @@ function App() {
             </span>
           </div>
         </div>
-        <section id="discover" className="section container">
+        <section
+          id="discover"
+          className="section container"
+          style={{ display: "none" }}
+        >
           <div className="section-heading">
             <div>
               <h2>Для жизни на новом месте</h2>
@@ -596,6 +600,14 @@ function App() {
                 мессенджера.
               </p>
             </div>
+            <div>
+              <Icon name="bell" />
+              <h3>Нужное найдётся — мы сообщим</h3>
+              <p>
+                Укажите, что ищете, район и бюджет. Когда появится подходящее
+                объявление, бот пришлёт уведомление в Telegram.
+              </p>
+            </div>
           </div>
         </section>
         {/* <section id="locations" className="container locations-section">
@@ -644,9 +656,34 @@ function App() {
         </section> */}
 
         <section id="locations" className="container location-cta">
-          <img className="w-full" src={MAP} alt="Map" />
+          <div
+            className="location-map-scroll"
+            role="region"
+            aria-label="Карта локаций с горизонтальной прокруткой"
+            tabIndex={0}
+          >
+            <img
+              className="location-map-image"
+              src={MAP}
+              alt="Карта локаций Classifieds: синие отметки — мы уже работаем, персиковые — скоро запускаемся"
+            />
+          </div>
+          <p className="location-scroll-hint">Листайте карту влево и вправо</p>
+          <ul className="location-legend" aria-label="Обозначения на карте">
+            <li>
+              <img src={locationActive} width={20} height={24} alt="" />
+              <span>Мы уже работаем</span>
+            </li>
+            <li>
+              <img src={locationSoon} width={20} height={24} alt="" />
+              <span>Скоро запускаемся</span>
+            </li>
+          </ul>
         </section>
-        <section className="section container faq-section">
+        <section
+          className="section container faq-section"
+          style={{ display: "none" }}
+        >
           <div>
             <h2>
               Пара вопросов
@@ -692,7 +729,7 @@ function App() {
         </section>
         <section className="container final-cta">
           <div className="cta-icon">
-            <Icon name="send" size={40} />
+            <img src={telegramIcon} alt="Telegram" width={40} height={40} />
           </div>
           <h2>
             Ваше новое «рядом»
