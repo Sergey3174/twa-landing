@@ -1,11 +1,11 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;450;500;550;600;650;700&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400..700&display=swap");
 @import "tailwindcss";
 @theme {
   --color-background: #1a2026;
   --color-panel: #212a33;
   --color-accent: #248bda;
   --color-link: #4db2ff;
-  --font-sans: "Google Sans Flex", "Segoe UI", sans-serif;
+  --font-sans: "Nunito Sans", "Segoe UI", sans-serif;
 }
 :root {
   font-family: var(--font-sans);
@@ -79,11 +79,11 @@ p {
 h2 {
   font-size: 44px;
   line-height: 1.14;
-  font-weight: 550;
+  font-weight: 600;
   letter-spacing: -1.6px;
 }
 h3 {
-  font-weight: 550;
+  font-weight: 600;
 }
 .skip-link {
   position: fixed;
@@ -212,7 +212,7 @@ h1 {
   font-size: clamp(58px, 5.5vw, 78px);
   line-height: 1.04;
   letter-spacing: -3.8px;
-  font-weight: 550;
+  font-weight: 600;
 }
 .hero-description {
   color: #acb7c2;
@@ -236,7 +236,7 @@ h1 {
   padding: 17px 22px;
   border-radius: 10px;
   font-size: 14px;
-  font-weight: 550;
+  font-weight: 600;
   transition: background 0.2s;
 }
 .button-primary {
@@ -700,7 +700,7 @@ h1 {
 }
 .listing-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   min-height: 329px;
 }
@@ -863,6 +863,20 @@ h1 {
   color: var(--link);
   margin-top: 3px;
 }
+.features-background {
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+  background-color: var(--bg);
+  background-image:
+    /* radial-gradient(ellipse at center, transparent 0%, var(--bg) 80%), */
+    linear-gradient(rgb(26 32 38 / 84%), rgb(26 32 38 / 84%)),
+    url("./assets/bg-app.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .features-layout {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
@@ -1229,9 +1243,9 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: 25px;
-  padding-block: 41px;
-  margin-top: 48px;
-  border-top: 1px solid var(--line);
+  padding-block: 20px;
+
+ 
 }
 .footer > .logo {
   font-size: 20px;
@@ -1243,6 +1257,11 @@ h1 {
 }
 .footer > span,
 .footer > a:not(.logo) {
+  font-size: 11px;
+  color: var(--hint);
+}
+
+.footer_item > a:not(.logo) {
   font-size: 11px;
   color: var(--hint);
 }
@@ -1815,3 +1834,6 @@ body:has(.modal-backdrop) {
   object-fit: contain;
   object-position: center;
 }
+
+
+

@@ -47,6 +47,7 @@ type IconName =
   | "check"
   | "message"
   | "menu"
+  | "tractor"
   | "close";
 function Icon({ name, size = 22 }: { name: IconName; size?: number }) {
   const paths: Record<IconName, React.ReactNode> = {
@@ -119,6 +120,19 @@ function Icon({ name, size = 22 }: { name: IconName; size?: number }) {
     ),
     menu: <path d="M4 6h16M4 12h16M4 18h16" />,
     close: <path d="m6 6 12 12M6 18 18 6" />,
+    tractor: (
+      <>
+        <path d="m10 11 11 .9a1 1 0 0 1 .8 1.1l-.665 4.158a1 1 0 0 1-.988.842H20" />
+        <path d="M16 18h-5" />
+        <path d="M18 5a1 1 0 0 0-1 1v5.573" />
+        <path d="M3 4h8.129a1 1 0 0 1 .99.863L13 11.246" />
+        <path d="M4 11V4" />
+        <path d="M7 15h.01" />
+        <path d="M8 10.1V4" />
+        <circle cx="18" cy="18" r="2" />
+        <circle cx="7" cy="15" r="5" />
+      </>
+    ),
   };
   return (
     <svg
@@ -234,13 +248,13 @@ const listings = [
       "Пример объявления о продаже камеры. Все изображения и цены на лендинге демонстрационные.",
   },
 ];
-const categories: { title: string; icon: IconName }[] = [
-  { title: "Все объявления", icon: "grid" },
-  { title: "Жильё", icon: "home" },
-  { title: "Транспорт", icon: "bike" },
-  { title: "Техника", icon: "laptop" },
-  { title: "Хобби", icon: "heart" },
-];
+// const categories: { title: string; icon: IconName }[] = [
+//   { title: "Все объявления", icon: "grid" },
+//   { title: "Жильё", icon: "home" },
+//   { title: "Транспорт", icon: "bike" },
+//   { title: "Техника", icon: "laptop" },
+//   { title: "Хобби", icon: "heart" },
+// ];
 const cities = [
   {
     name: "Бали",
@@ -283,7 +297,7 @@ function PhonePreview() {
 }
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [category, setCategory] = useState("Все объявления");
+  const [category] = useState("Все объявления");
   const [saved, setSaved] = useState<string[]>([]);
   const [selected, setSelected] = useState<(typeof listings)[number] | null>(
     null,
@@ -297,7 +311,7 @@ function App() {
   }, [selected]);
   const visibleListings =
     category === "Все объявления"
-      ? listings.slice(0, 3)
+      ? listings.slice(0, 4)
       : listings.filter((l) => l.category === category);
   const toggleSaved = (id: string) =>
     setSaved((previous) =>
@@ -432,24 +446,19 @@ function App() {
                 </a>
               ))}
             </div>
-            <span className="strip-note">
-              Один Telegram. Много возможностей.
-            </span>
+            <a href="#locations" className="strip-note !text-[12px]">
+              Зона покрытия сервиса
+            </a>
           </div>
         </div>
-        <section
-          id="discover"
-          className="section container"
-          style={{ display: "none" }}
-        >
+        <section id="discover" className="section container">
           <div className="section-heading">
             <div>
               <h2>Для жизни на новом месте</h2>
               <p>От ключей от дома до доски для первой волны.</p>
             </div>
-            <span className="demo-label">Примеры объявлений на Бали</span>
           </div>
-          <div className="category-tabs" aria-label="Категории объявлений">
+          {/* <div className="category-tabs" aria-label="Категории объявлений">
             {categories.map((c) => (
               <button
                 key={c.title}
@@ -461,7 +470,7 @@ function App() {
                 {c.title}
               </button>
             ))}
-          </div>
+          </div> */}
           <div className="listing-grid" aria-live="polite">
             {visibleListings.map((l) => (
               <article className="listing-card" key={l.id}>
@@ -519,11 +528,11 @@ function App() {
           <div className="container how-layout">
             <div className="how-intro">
               <span className="section-symbol">
-                <Icon name="message" size={27} />
+                <Icon name="tractor" size={27} />
               </span>
               <h2>
-                Из «ищу»
-                <br />в «договорились».
+                Автоматический сбор объявлений
+                <br /> с площадок вашего города
               </h2>
               <p>
                 Знакомый Telegram.
@@ -562,51 +571,53 @@ function App() {
             </div>
           </div>
         </section>
-        <section className="section container features-layout">
-          <div>
-            <h2>
-              Меньше шума.
-              <br />
-              Больше полезного.
-            </h2>
-            <p className="section-description">
-              Объявления не теряются в переписке.
-              <br />
-              Всё нужное собрано в одном месте.
-            </p>
-          </div>
-          <div className="feature-list">
+        <section className="features-background">
+          <div className="section container features-layout">
             <div>
-              <Icon name="pin" />
-              <h3>Сначала ваш район</h3>
-              <p>
-                Место видно в каждом объявлении. Не нужно уточнять, на другом ли
-                конце острова продавец.
+              <h2>
+                Меньше шума.
+                <br />
+                Больше полезного.
+              </h2>
+              <p className="section-description">
+                Объявления не теряются в переписке.
+                <br />
+                Всё нужное собрано в одном месте.
               </p>
             </div>
-            <div>
-              <Icon name="heart" />
-              <h3>То, что понравилось, под рукой</h3>
-              <p>
-                Сохраняйте объявления, чтобы сравнить варианты и вернуться к ним
-                позже.
-              </p>
-            </div>
-            <div>
-              <Icon name="message" />
-              <h3>Общение напрямую</h3>
-              <p>
-                Все вопросы — автору в Telegram. Знакомый чат вместо ещё одного
-                мессенджера.
-              </p>
-            </div>
-            <div>
-              <Icon name="bell" />
-              <h3>Нужное найдётся — мы сообщим</h3>
-              <p>
-                Укажите, что ищете, район и бюджет. Когда появится подходящее
-                объявление, бот пришлёт уведомление в Telegram.
-              </p>
+            <div className="feature-list">
+              <div>
+                <Icon name="pin" />
+                <h3>Сначала ваш район</h3>
+                <p>
+                  Место видно в каждом объявлении. Не нужно уточнять, где
+                  находится продавец.
+                </p>
+              </div>
+              <div>
+                <Icon name="heart" />
+                <h3>То, что понравилось, под рукой</h3>
+                <p>
+                  Сохраняйте объявления, чтобы сравнить варианты и вернуться к
+                  ним позже.
+                </p>
+              </div>
+              <div>
+                <Icon name="message" />
+                <h3>Общение напрямую</h3>
+                <p>
+                  Все вопросы — автору в Telegram. Знакомый чат вместо ещё
+                  одного мессенджера.
+                </p>
+              </div>
+              <div>
+                <Icon name="bell" />
+                <h3>Нужное найдётся — мы сообщим</h3>
+                <p>
+                  Укажите, что ищете, район и бюджет. Когда появится подходящее
+                  объявление, бот пришлёт уведомление в Telegram.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -745,11 +756,12 @@ function App() {
       </main>
       <footer className="container footer">
         <Logo />
+        <div className="flex footer_item  gap-2">
+          <a href="#how-it-works">Политика конфиденциальности</a>
+          <a href="#how-it-works">Правила и условия</a>
+          <a href="#how-it-works">Рекламодателям</a>
+        </div>
         <span>© {new Date().getFullYear()} TWA Classifieds</span>
-        <a href="#how-it-works">Как это работает</a>
-        <a href={telegramUrl} target="_blank" rel="noreferrer">
-          Мы в Telegram <Icon name="send" size={16} />
-        </a>
       </footer>
       {selected && (
         <div className="modal-backdrop" onClick={() => setSelected(null)}>
