@@ -1,0 +1,138 @@
+/* Independent translate/scale properties preserve the mockup's existing tilt. */
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: 5% -8%;
+  z-index: -2;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgb(36 139 218 / 13%), transparent 68%);
+}
+
+.button-primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background 200ms, box-shadow 250ms, translate 250ms;
+}
+
+.button-primary::before {
+  content: "";
+  position: absolute;
+  inset: -50% auto -50% -70%;
+  width: 45%;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgb(255 255 255 / 18%), transparent);
+  transform: skewX(-18deg);
+  transition: left 650ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.button-primary:focus-visible {
+  box-shadow: 0 0 0 5px rgb(77 178 255 / 12%), 0 10px 30px rgb(36 139 218 / 24%);
+}
+
+.button:active, .category-tabs button:active, .city-buttons button:active {
+  scale: .97;
+}
+
+.navigation a {
+  position: relative;
+}
+
+.navigation a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -7px;
+  height: 1px;
+  background: var(--link);
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale 220ms ease;
+}
+
+.navigation a:focus-visible::after { scale: 1; }
+.category-tabs button, .city-buttons button { transition: background 200ms, border-color 200ms, scale 160ms; }
+.save-button { transition: background 200ms, scale 180ms, color 180ms; }
+.listing-card { transition: translate 250ms, box-shadow 250ms; }
+.listing-card:focus-within { box-shadow: 0 0 0 1px rgb(77 178 255 / 45%); }
+.text-link svg, .header-cta svg { transition: translate 200ms; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy {
+    animation: hero-intro 800ms cubic-bezier(.22, 1, .36, 1) both;
+  }
+  .hero-visual {
+    animation: visual-intro 1100ms ease both;
+  }
+  .phone {
+    animation: phone-float 7s ease-in-out 1100ms infinite;
+    translate: var(--hero-x, 0px) var(--hero-y, 0px);
+  }
+  .floating-listing, .floating-message, .big-pin {
+    transition: translate 550ms cubic-bezier(.22, 1, .36, 1);
+  }
+  .floating-listing {
+    translate: calc(var(--hero-x, 0px) * -.7) calc(var(--hero-y, 0px) * -.6);
+  }
+  .floating-message {
+    translate: calc(var(--hero-x, 0px) * 1.4) calc(var(--hero-y, 0px) * 1.2);
+  }
+  .big-pin {
+    translate: calc(var(--hero-x, 0px) * -.4) calc(var(--hero-y, 0px) * -.4);
+  }
+  .save-button.is-saved svg { animation: save-pop 340ms ease; }
+  .listing-modal { animation: dialog-intro 240ms cubic-bezier(.22, 1, .36, 1); }
+  .modal-backdrop { animation: visual-intro 180ms ease; }
+  .faq-list details[open] > p { animation: answer-intro 230ms ease; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button-primary:hover {
+    translate: 0 -2px;
+    box-shadow: 0 10px 32px rgb(36 139 218 / 25%);
+  }
+  .button-primary:hover::before { left: 130%; }
+  .navigation a:hover::after { scale: 1; }
+  .listing-card:hover {
+    translate: 0 -5px;
+    box-shadow: 0 0 0 1px rgb(77 178 255 / 25%), 0 18px 35px rgb(0 0 0 / 18%);
+  }
+  .save-button:hover { scale: 1.1; background: rgb(26 32 38 / 85%); }
+  .text-link:hover svg, .header-cta:hover svg { translate: 4px 0; }
+}
+
+@keyframes hero-intro {
+  from { opacity: 0; translate: 0 20px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes visual-intro { from { opacity: 0; } to { opacity: 1; } }
+@keyframes phone-float {
+  0%, 100% { translate: var(--hero-x, 0px) var(--hero-y, 0px); }
+  50% { translate: var(--hero-x, 0px) calc(var(--hero-y, 0px) - 7px); }
+}
+@keyframes save-pop {
+  0%, 100% { scale: 1; }
+  45% { scale: 1.25; }
+}
+@keyframes dialog-intro {
+  from { opacity: 0; translate: 0 12px; scale: .98; }
+  to { opacity: 1; translate: 0 0; scale: 1; }
+}
+@keyframes answer-intro {
+  from { opacity: 0; translate: 0 -4px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone, .floating-listing, .floating-message, .big-pin,
+  .listing-card:hover, .button-primary:hover,
+  .text-link:hover svg, .header-cta:hover svg {
+    translate: none;
+  }
+  .button:active, .category-tabs button:active,
+  .city-buttons button:active, .save-button:hover {
+    scale: none;
+  }
+  .button-primary::before { display: none; }
+}
