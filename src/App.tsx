@@ -249,24 +249,111 @@ const listings = [
   },
 ];
 const categories = [
-  { id: 1, code: "realty", title: "Жильё", color: "#007aff", path: "m3 10 9-7 9 7v10H3Z M9 20v-7h6v7" },
-  { id: 2, code: "transport", title: "Транспорт", color: "#ff8a00", path: "m5 7 2-4h10l2 4 2 4v7H3v-7Z M5 7h14 M7 18v3 M17 18v3 M6 13h2 M16 13h2" },
-  { id: 3, code: "electronics", title: "Техника", color: "#5856d6", path: "M7 2h10a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z M11 18h2" },
-  { id: 4, code: "services", title: "Услуги", color: "#18a957", path: "M14 6 18 2a6 6 0 0 1-7 8L4 17a2 2 0 0 0 3 3l7-7a6 6 0 0 0 8-7l-4 4Z" },
-  { id: 5, code: "home", title: "Дом", color: "#ff2d55", path: "M5 11V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4 M5 14h14 M5 14v-3a2 2 0 0 0-4 0v7h22v-7a2 2 0 0 0-4 0v3 M4 18v3 M20 18v3" },
-  { id: 6, code: "jobs", title: "Работа", color: "#5b6b7f", path: "M8 6V3h8v3 M3 6h18v15H3Z M3 11a20 20 0 0 0 18 0 M12 11v4" },
-  { id: 7, code: "clothes", title: "Одежда", color: "#e0a100", path: "m8 3-6 4 3 5 3-2v11h8V10l3 2 3-5-6-4a4 4 0 0 1-8 0Z" },
-  { id: 8, code: "kids", title: "Детям", color: "#00a5c8", path: "M9 3a9 9 0 1 0 6 0 M9 3c0 4 6 4 6 0 M8 10h.01 M16 10h.01 M8 15q4 4 8 0" },
-  { id: 9, code: "hobby", title: "Хобби", color: "#9b51e0", path: "m12 12 8-8 M18 2l4 4 M7 9c-6 0-8 9-3 12s11-1 9-6c3-1 4-5 1-6s-5-1-7 0Z M8 14h.01" },
-  { id: 10, code: "pets", title: "Животные", color: "#f2622e", path: "M8 14c-6 7 0 9 4 6 4 3 10 1 4-6-2-3-6-3-8 0Z M8 3a2 3 0 1 0 0 6 2 3 0 1 0 0-6 M16 3a2 3 0 1 0 0 6 2 3 0 1 0 0-6 M3 8a2 3 0 1 0 0 6 2 3 0 1 0 0-6 M21 8a2 3 0 1 0 0 6 2 3 0 1 0 0-6" },
-  { id: 18, code: "books", title: "Книги", color: "#a66b32", path: "M12 5C9 3 5 3 2 4v16c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Z M12 5v16" },
+  {
+    id: 1,
+    code: "realty",
+    title: "Жильё",
+    color: "#007aff",
+    path: "m3 10 9-7 9 7v10H3Z M9 20v-7h6v7",
+  },
+  {
+    id: 2,
+    code: "transport",
+    title: "Транспорт",
+    color: "#ff8a00",
+    path: "m5 7 2-4h10l2 4 2 4v7H3v-7Z M5 7h14 M7 18v3 M17 18v3 M6 13h2 M16 13h2",
+  },
+  {
+    id: 3,
+    code: "electronics",
+    title: "Техника",
+    color: "#5856d6",
+    path: "M7 2h10a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z M11 18h2",
+  },
+  {
+    id: 4,
+    code: "services",
+    title: "Услуги",
+    color: "#18a957",
+    path: "M14 6 18 2a6 6 0 0 1-7 8L4 17a2 2 0 0 0 3 3l7-7a6 6 0 0 0 8-7l-4 4Z",
+  },
+  {
+    id: 5,
+    code: "home",
+    title: "Дом",
+    color: "#ff2d55",
+    path: "M5 11V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4 M5 14h14 M5 14v-3a2 2 0 0 0-4 0v7h22v-7a2 2 0 0 0-4 0v3 M4 18v3 M20 18v3",
+  },
+  {
+    id: 6,
+    code: "jobs",
+    title: "Работа",
+    color: "#5b6b7f",
+    path: "M8 6V3h8v3 M3 6h18v15H3Z M3 11a20 20 0 0 0 18 0 M12 11v4",
+  },
+  {
+    id: 7,
+    code: "clothes",
+    title: "Одежда",
+    color: "#e0a100",
+    path: "m8 3-6 4 3 5 3-2v11h8V10l3 2 3-5-6-4a4 4 0 0 1-8 0Z",
+  },
+  {
+    id: 8,
+    code: "kids",
+    title: "Детям",
+    color: "#00a5c8",
+    path: "M9 3a9 9 0 1 0 6 0 M9 3c0 4 6 4 6 0 M8 10h.01 M16 10h.01 M8 15q4 4 8 0",
+  },
+  {
+    id: 9,
+    code: "hobby",
+    title: "Хобби",
+    color: "#9b51e0",
+    path: "m12 12 8-8 M18 2l4 4 M7 9c-6 0-8 9-3 12s11-1 9-6c3-1 4-5 1-6s-5-1-7 0Z M8 14h.01",
+  },
+  {
+    id: 10,
+    code: "pets",
+    title: "Животные",
+    color: "#f2622e",
+    path: "M8 14c-6 7 0 9 4 6 4 3 10 1 4-6-2-3-6-3-8 0Z M8 3a2 3 0 1 0 0 6 2 3 0 1 0 0-6 M16 3a2 3 0 1 0 0 6 2 3 0 1 0 0-6 M3 8a2 3 0 1 0 0 6 2 3 0 1 0 0-6 M21 8a2 3 0 1 0 0 6 2 3 0 1 0 0-6",
+  },
+  {
+    id: 18,
+    code: "books",
+    title: "Книги",
+    color: "#a66b32",
+    path: "M12 5C9 3 5 3 2 4v16c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Z M12 5v16",
+  },
 ];
 const cities = [
-  "Бангкок", "Пхукет", "Паттайя", "Самуи", "Чиангмай",
-  "Убуд", "Чангу", "Семиньяк", "Кута", "Джимбаран", "Улувату",
-  "Санур", "Денпасар", "Кромеронг", "Падангбай", "Нуса-Дуа",
-  "Сакач", "Джакарта", "Нячанг", "Дананг", "Фукуок", "Хошимин",
-  "Ханой", "Куала-Лумпур", "Пенанг", "Лангкави",
+  "Бангкок",
+  "Пхукет",
+  "Паттайя",
+  "Самуи",
+  "Чиангмай",
+  "Убуд",
+  "Чангу",
+  "Семиньяк",
+  "Кута",
+  "Джимбаран",
+  "Улувату",
+  "Санур",
+  "Денпасар",
+  "Кромеронг",
+  "Падангбай",
+  "Нуса-Дуа",
+  "Сакач",
+  "Джакарта",
+  "Нячанг",
+  "Дананг",
+  "Фукуок",
+  "Хошимин",
+  "Ханой",
+  "Куала-Лумпур",
+  "Пенанг",
+  "Лангкави",
 ];
 function PhonePreview() {
   return (
@@ -336,7 +423,7 @@ function App() {
           >
             В Telegram <Icon name="arrow" size={17} />
           </a> */}
-          <div></div>
+
           <button
             className="menu-toggle"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -427,22 +514,33 @@ function App() {
         <div className="city-strip">
           <div className="container city-strip-layout">
             <span>Ближе, чем кажется</span>
-          <div className="categories-viewport cities-viewport" tabIndex={0} aria-label="Города — горизонтальная прокрутка">
-            <div className="categories-track">
-              {[0, 1].map((copy) => (
-                <ul className="categories-chips cities-list" key={copy} aria-hidden={copy === 1 ? true : undefined}>
-                  {cities.map((city) => (
-                    <li key={city}>
-                      <a href="#locations" tabIndex={copy === 1 ? -1 : undefined}>
-                        <Icon name="pin" size={17} />
-                        {city}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              ))}
+            <div
+              className="categories-viewport cities-viewport"
+              tabIndex={0}
+              aria-label="Города — горизонтальная прокрутка"
+            >
+              <div className="categories-track">
+                {[0, 1].map((copy) => (
+                  <ul
+                    className="categories-chips cities-list"
+                    key={copy}
+                    aria-hidden={copy === 1 ? true : undefined}
+                  >
+                    {cities.map((city) => (
+                      <li key={city}>
+                        <a
+                          href="#locations"
+                          tabIndex={copy === 1 ? -1 : undefined}
+                        >
+                          <Icon name="pin" size={17} />
+                          {city}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+              </div>
             </div>
-          </div>
             <a href="#locations" className="strip-note !text-[12px]">
               Зона покрытия сервиса
             </a>
@@ -517,23 +615,48 @@ function App() {
             ))}
           </div>
         </section>
-        <section className="categories-section" aria-label="Категории объявлений">
+        <section
+          className="categories-section"
+          aria-label="Категории объявлений"
+        >
           <div className="categories-strip">
-            <div className="categories-viewport" tabIndex={0} aria-label="Категории объявлений — горизонтальная прокрутка">
-            <div className="categories-track">
-            {[0, 1].map((copy) => (
-            <ul className="categories-chips" key={copy} aria-hidden={copy === 1 ? true : undefined}>
-              {categories.map((item) => (
-                <li className="category-chip" key={item.id} data-category={item.code}>
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={item.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d={item.path} />
-                  </svg>
-                  {item.title}
-                </li>
-              ))}
-            </ul>
-            ))}
-            </div>
+            <div
+              className="categories-viewport"
+              tabIndex={0}
+              aria-label="Категории объявлений — горизонтальная прокрутка"
+            >
+              <div className="categories-track">
+                {[0, 1].map((copy) => (
+                  <ul
+                    className="categories-chips"
+                    key={copy}
+                    aria-hidden={copy === 1 ? true : undefined}
+                  >
+                    {categories.map((item) => (
+                      <li
+                        className="category-chip"
+                        key={item.id}
+                        data-category={item.code}
+                      >
+                        <svg
+                          width="26"
+                          height="26"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke={item.color}
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d={item.path} />
+                        </svg>
+                        {item.title}
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+              </div>
             </div>
           </div>
         </section>
