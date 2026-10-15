@@ -867,6 +867,41 @@ h1 {
   font-weight: 600;
   white-space: nowrap;
 }
+.cities-viewport {
+  min-width: 0;
+}
+.cities-viewport .categories-track {
+  animation-duration: 70s;
+}
+.city-strip-layout {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+}
+.city-strip .city-strip-layout > span:first-child {
+  width: auto;
+}
+@media (max-width: 700px) {
+  .city-strip-layout {
+    grid-template-columns: 72px minmax(0, 1fr) 88px;
+    gap: 12px;
+  }
+}
+.cities-list {
+  gap: 40px;
+  padding-right: 40px;
+}
+.cities-list > li {
+  flex: 1 0 auto;
+}
+.cities-list a {
+  justify-content: center;
+  white-space: nowrap;
+}
+/* .cities-viewport:focus-within .categories-track {
+  animation-play-state: paused;
+} */
 @media (max-width: 700px) {
   .categories-strip {
     padding: 28px 0;

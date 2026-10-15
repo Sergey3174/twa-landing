@@ -262,30 +262,11 @@ const categories = [
   { id: 18, code: "books", title: "Книги", color: "#a66b32", path: "M12 5C9 3 5 3 2 4v16c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Z M12 5v16" },
 ];
 const cities = [
-  {
-    name: "Бали",
-    country: "Индонезия",
-    districts: ["Чангу", "Убуд", "Семиньяк", "Санур", "Улувату"],
-    currency: "Индонезийские рупии · Rp",
-  },
-  {
-    name: "Пхукет",
-    country: "Таиланд",
-    districts: ["Раваи", "Ката", "Карон", "Банг Тао", "Патонг"],
-    currency: "Тайские баты · ฿",
-  },
-  {
-    name: "Бангкок",
-    country: "Таиланд",
-    districts: ["Сукхумвит", "Силом", "Ари", "Тонглор"],
-    currency: "Тайские баты · ฿",
-  },
-  {
-    name: "Дубай",
-    country: "ОАЭ",
-    districts: ["Марина", "Бизнес-Бэй", "JLT", "Даунтаун"],
-    currency: "Дирхамы ОАЭ · AED",
-  },
+  "Бангкок", "Пхукет", "Паттайя", "Самуи", "Чиангмай",
+  "Убуд", "Чангу", "Семиньяк", "Кута", "Джимбаран", "Улувату",
+  "Санур", "Денпасар", "Кромеронг", "Падангбай", "Нуса-Дуа",
+  "Сакач", "Джакарта", "Нячанг", "Дананг", "Фукуок", "Хошимин",
+  "Ханой", "Куала-Лумпур", "Пенанг", "Лангкави",
 ];
 function PhonePreview() {
   return (
@@ -444,16 +425,24 @@ function App() {
           </div>
         </section>
         <div className="city-strip">
-          <div className="container flex flex-wrap items-center justify-between gap-5">
+          <div className="container city-strip-layout">
             <span>Ближе, чем кажется</span>
-            <div className="flex flex-wrap items-center gap-8 md:gap-12">
-              {cities.map((c) => (
-                <a href="#locations" key={c.name}>
-                  <Icon name="pin" size={17} />
-                  {c.name}
-                </a>
+          <div className="categories-viewport cities-viewport" tabIndex={0} aria-label="Города — горизонтальная прокрутка">
+            <div className="categories-track">
+              {[0, 1].map((copy) => (
+                <ul className="categories-chips cities-list" key={copy} aria-hidden={copy === 1 ? true : undefined}>
+                  {cities.map((city) => (
+                    <li key={city}>
+                      <a href="#locations" tabIndex={copy === 1 ? -1 : undefined}>
+                        <Icon name="pin" size={17} />
+                        {city}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               ))}
             </div>
+          </div>
             <a href="#locations" className="strip-note !text-[12px]">
               Зона покрытия сервиса
             </a>
